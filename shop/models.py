@@ -28,7 +28,7 @@ class Price(models.Model):
     """docstring for Price"""
 
     def __str__(self):
-        return self.price
+        return str(self.price)
 
     product = models.ForeignKey('shop.Product', verbose_name='对应的商品')
     price = models.FloatField()
