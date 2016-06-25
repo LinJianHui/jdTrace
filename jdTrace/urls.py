@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from shop.views import index
+from django.views.generic import RedirectView
 urlpatterns = [
-    url(r'^$', index),
+    url('^', include('django.contrib.auth.urls')),
+    url(r'^$', RedirectView.as_view(url="/shop/")),
     url(r'^admin/', admin.site.urls),
     url(r'^shop/', include('shop.urls')),
+    url(r'^user/', include('usercenter.urls')),
+
 ]
