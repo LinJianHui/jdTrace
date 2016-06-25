@@ -3,3 +3,13 @@
     <script src='{% static "js/jquery-latest.js" %}' ></script>
     <script src='{% static "js/bootstrap.min.js" %}' ></script>
     <script src='{% static "js/theme.js" %}' ></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+
+    		var pathname = window.location.pathname;
+    		var theHref = $.find("a[href='"+pathname+"']")[0];
+    		$(theHref).addClass("active");
+    		$(theHref).closest("ul").addClass("active");
+    		$(theHref).closest("ul").parent("li").addClass("active");
+    	});
+    </script>

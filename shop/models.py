@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -33,3 +33,13 @@ class Price(models.Model):
     product = models.ForeignKey('shop.Product', verbose_name='对应的商品')
     price = models.FloatField()
     date = models.DateField()
+
+
+class UserInterest(models.Model):
+    """docstring for UserInterest"""
+
+    def __str__(self):
+        return self.user.username + self.products.name
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)

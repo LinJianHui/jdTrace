@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block maincontent%}
+   <div class="content">
+        
+        <!-- settings changer -->
+        <div class="skins-nav">
+            <a href="#" class="skin first_nav selected">
+                <span class="icon"></span><span class="text">Default</span>
+            </a>
+            <a href="#" class="skin second_nav" data-file="{% static 'css/skins/dark.css' %}">
+                <span class="icon"></span><span class="text">Dark skin</span>
+            </a>
+        </div>
+        
+        <div class="container-fluid">
+            <div id="pad-wrapper" class="users-list">
+
+                <!-- Users table -->
+                <div class="row-fluid table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="span6 sortable">
+                                    商品名称
+                                </th>
+                                <th class="span6 sortable">
+                                    <span class="line"></span>操作
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                     
+                        {% for interest in interests %}
+                        <!-- row -->
+                        <tr>
+                            <td>
+                                <a href="{% url 'shop:detail' interest.product.id %}" target="_blank" class="name">{{interest.product.name}}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'usercenter:removeinterst' interest.product.id %}" class="btn-glow primary">取消关注</a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end users table -->
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
