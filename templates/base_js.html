@@ -7,9 +7,13 @@
     	$(document).ready(function(){
 
     		var pathname = window.location.pathname;
-    		var theHref = $.find("a[href='"+pathname+"']")[0];
+    		var theHref = $.find("#sidebar-nav a[href='"+pathname+"']")[0];
     		$(theHref).addClass("active");
     		$(theHref).closest("ul").addClass("active");
-    		$(theHref).closest("ul").parent("li").addClass("active");
+    		$(theHref).closest("ul").parent("li").addClass("active").prepend('<div \
+                class="pointer">\
+                    <div class="arrow"></div>\
+                    <div class="arrow_border"></div>\
+                </div>');
     	});
     </script>

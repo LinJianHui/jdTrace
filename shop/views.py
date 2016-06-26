@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Product
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core import serializers
 # Create your views here.
 
 
@@ -26,8 +27,10 @@ def index(request):
 def detail(request, product_id):
     product = Product.objects.get(pk=product_id)
     prices = product.price_set.all()
+    jsonprices = serializers.serialize("json", prices)
     context = {
         'product': product,
-        'prices': prices
+        'prices': prices,
+        'jsonprices': jsonprices
     }
     return render(request, 'shop/detail.html', context)

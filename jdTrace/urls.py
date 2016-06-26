@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import RedirectView
+from django.contrib.auth import views as auth_views
 urlpatterns = [
+    url(r'^logout/$', auth_views.logout, {'next_page': 'login'}),
     url('^', include('django.contrib.auth.urls')),
-    url(r'^$', RedirectView.as_view(url="/shop/")),
+    url(r'^$', RedirectView.as_view(url="/shop/"), name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^shop/', include('shop.urls')),
     url(r'^user/', include('usercenter.urls')),
